@@ -1,0 +1,96 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: vaultkubernetesroles.tanuu.fi
+spec:
+  group: tanuu.fi
+  names:
+    kind: VaultKubernetesRole
+    singular: vaultkubernetesrole
+    plural: vaultkubernetesroles
+  scope: Namespaced
+  versions:
+  - name: v1
+    served: true
+    storage: true
+    schema:
+      openAPIV3Schema:
+        type: object
+        properties:
+          spec:
+            type: object
+            properties:
+              name:
+                description:
+                type: string
+              serviceAccountNames:
+                type: array
+                items:
+                  type: string
+              serviceAccountNamespaces:
+                type: array
+                items:
+                  type: string
+              policies:
+                type: array
+                items:
+                  type: string
+              tokenTtl:
+                type: integer
+            required:
+            - name
+            - serviceAccountNames
+            - serviceAccountNamespaces
+            - policies
+    subresources:
+      status: {}
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: vaultpolicies.tanuu.fi
+spec:
+  group: tanuu.fi
+  names:
+    kind: VaultPolicy
+    singular: vaultpolicy
+    plural: vaultpolicies
+  scope: Namespaced
+  versions:
+  - name: v1
+    served: true
+    storage: true
+    schema:
+      openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                name:
+                  type: string
+                policies:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      path:
+                        type: string
+                      capabilities:
+                        type: array
+                        items:
+                          type: string
+                          enum:
+                          - create
+                          - read
+                          - update
+                          - delete
+                          - list
+                          - patch
+                          - sudo
+                          - deny
+              required:
+              - name
+              - policies
+    subresources:
+      status: {}

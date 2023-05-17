@@ -1,0 +1,15 @@
+apiVersion: tanuu.fi/v1
+kind: VaultKubernetesRole
+metadata:
+  name: test-kubernetes-role
+spec:
+  name: test-kubernetes-role
+  serviceAccountNamespaces:
+  - some-namespace
+  serviceAccountNames:
+  - default
+  - some-account-name
+  policies:
+  - test-policy
+  - other
+  tokenTtl: 100

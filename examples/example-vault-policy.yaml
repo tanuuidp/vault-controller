@@ -1,0 +1,17 @@
+apiVersion: tanuu.fi/v1
+kind: VaultPolicy
+metadata:
+  name: test-policy
+spec:
+  name: test-policy
+  policies:
+  - path: "kv/*"
+    capabilities:
+    - read
+    - list
+  - path: "secrets/*"
+    capabilities:
+    - read
+    - update
+    - list
+    - delete

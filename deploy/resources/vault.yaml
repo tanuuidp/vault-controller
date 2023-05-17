@@ -1,0 +1,35 @@
+apiVersion: tanuu/v1
+kind: VaultKubernetesRole
+metadata:
+  name: vault-controller-kubernetes-role
+spec:
+  name: vault-controller
+  serviceAccountNamespaces:
+  - vault
+  serviceAccountNames:
+  - default
+  policies:
+  - vault-controller
+  tokenTtl: 1800
+---
+apiVersion: tanuu/v1
+kind: VaultPolicy
+metadata:
+  name: vault-controller-policy
+spec:
+  name: vault-controller
+  policies:
+  - path: "auth/kubernetes/role/*"
+    capabilities:
+    - create
+    - read
+    - update
+    - delete
+    - list
+  - path: "sys/policies/acl/*"
+    capabilities:
+    - create
+    - read
+    - update
+    - delete
+    - list
