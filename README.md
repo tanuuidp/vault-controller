@@ -13,11 +13,11 @@ mingle for each cluster resource!
 
     ```hcl
     path "auth/kubernetes/role/*" {
-    capabilities = ["create", "read", "update", "delete", "list"]
+      capabilities = ["create", "read", "update", "delete", "list"]
     }
 
     path "sys/policies/acl/*" {
-    capabilities = ["create", "read", "update", "delete", "list"]
+      capabilities = ["create", "read", "update", "delete", "list"]
     }
     ```
 
