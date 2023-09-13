@@ -1,4 +1,4 @@
-apiVersion: tanuu/v1
+apiVersion: tanuu.fi/v1
 kind: VaultKubernetesRole
 metadata:
   name: vault-controller-kubernetes-role
@@ -12,7 +12,7 @@ spec:
   - vault-controller
   tokenTtl: 1800
 ---
-apiVersion: tanuu/v1
+apiVersion: tanuu.fi/v1
 kind: VaultPolicy
 metadata:
   name: vault-controller-policy
